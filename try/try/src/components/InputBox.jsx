@@ -3,17 +3,13 @@ import React from "react";
 const InputBox = ({
   label,
   disabality = false,
-  amount = 0,
-  convertedAmount = 0,
+  currencyOptions = [],
+  selectedCurrency='usd',
+  amount=0,
   onAmountChange,
-  onCurrencyChange,
-  options = [],
-  selectCurrency = "usd",
+  onCurrencyChange
+  
 }) => {
-  // let value;
-
-  // if( label != 'To')  value= convertedAmount;
-  // else value = amount;
 
   return (
     <>
@@ -30,35 +26,26 @@ const InputBox = ({
             placeholder="Amount"
             disabled={disabality}
             value={amount}
-            onChange={(e) =>
-              onAmountChange && onAmountChange(Number(e.target.value))
-            }
+            onChange={(e) => onAmountChange && onAmountChange(Number(e.target.value))}
           />
         </div>
 
-        {/* <select name="" id="">
-        {options.map((opt) => {
-            <option key={opt} value={opt}>
-                {opt}
-            </option>
-        })}
-        </select> */}
 
         <div className="flex flex-col justify-center items-end">
           <p className="text-gray-600">Currency Type</p>
 
           <select
             className="outline-0 bg-gray-300 rounded-md my-2 px-0.5"
-            value={selectCurrency}
-            onChange={(e) =>
-              onCurrencyChange && onCurrencyChange(e.target.value)
-            }
+            value={selectedCurrency}
+            onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
+            
           >
-            {options.map((currency) => (
+            {currencyOptions.map((currency) => (
               <option key={currency} value={currency}>
                 {currency}
               </option>
             ))}
+           
           </select>
         </div>
       </div>
