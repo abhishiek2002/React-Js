@@ -1,4 +1,4 @@
-# What we have study in this 
+# What we have study in this
 
 ## Create Some Components
 
@@ -13,7 +13,6 @@
 
 we have already studied to how create components in `React.js`. We have no problem in this.
 
-
 ## New Things That We have Learn In This Are
 
 ### Create Layout For Our Website
@@ -21,14 +20,15 @@ we have already studied to how create components in `React.js`. We have no probl
 For creating `Layout` , we use `Outlet` from `react-router-dom`
 
 ```js
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 ```
 
 In `react-router-dom`, `<Outlet />` is a component used to render nested routes. It acts as a placeholder where child routes will be injected inside a parent route component.
 
 #### When to Use `<Outlet />`
+
 When you have nested routes and want to display child components inside a parent layout.
-Useful for layouts with shared UI (like navigation bars or sidebars) where different child routes render inside a common structure. 
+Useful for layouts with shared UI (like navigation bars or sidebars) where different child routes render inside a common structure.
 
 ```jsx
 import React from "react";
@@ -60,66 +60,67 @@ For nesting , we need router
 #### Import `RouterProvider`
 
 ```js
- import { RouterProvider } from 'react-router-dom'
- ```
+import { RouterProvider } from "react-router-dom";
+```
 
- It take an `prop` that is `router` (Isko bas ek router bnake dedo)
+It take an `prop` that is `router` (Isko bas ek router bnake dedo)
 
- ```jsx
- <RouterProvider router={router} />
- ```
- Way to use in `main.jsx` after importing
+```jsx
+<RouterProvider router={router} />
+```
 
- ```jsx
- createRoot(document.getElementById('root')).render(
+Way to use in `main.jsx` after importing
+
+```jsx
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
-)
- ```
+  </StrictMode>
+);
+```
 
- #### Create `Router`
+#### Create `Router`
 
- For creating router ,we use `createBrowserRouter`
+For creating router ,we use `createBrowserRouter`
 
- ```js
- import { createBrowserRouter } from 'react-router-dom'
- ``` 
+```js
+import { createBrowserRouter } from "react-router-dom";
+```
 
- After importing, we can create router
+After importing, we can create router
 
- There are two ways for it.
+There are two ways for it.
 
- 1. 
+1.
 
- ```js
- const router = createBrowserRouter([
+```js
+const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
         path: "",
-        element: <Home />
-      }, 
-      {
-        path: 'about',
-        element: <About />
+        element: <Home />,
       },
       {
-        path: 'contact',
-        element: <Contact />
+        path: "about",
+        element: <About />,
       },
       {
-        path: 'user/:id',
-        element: <User />
-      }
-    ]
-  }
-])
- ```
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "user/:id",
+        element: <User />,
+      },
+    ],
+  },
+]);
+```
 
-2. 
+2.
 
 ```js
 const router = createBrowserRouter(
@@ -144,17 +145,16 @@ We studied, how to take dynamic values from `url` using `params`
 #### First Create A Component Called `User`
 
 ```jsx
-import React from 'react'
+import React from "react";
 const User = () => {
-
   return (
-    <div className='bg-gray-600 text-white text-center text-3xl p-2'>
-      User : 
+    <div className="bg-gray-600 text-white text-center text-3xl p-2">
+      User :
     </div>
-  )
-}
+  );
+};
 
-export default User
+export default User;
 ```
 
 #### Define its dynamic route in nesting or in router
@@ -162,34 +162,34 @@ export default User
 ```js
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
         path: "",
-        element: <Home />
-      }, 
-      {
-        path: 'about',
-        element: <About />
+        element: <Home />,
       },
       {
-        path: 'contact',
-        element: <Contact />
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
       {
         loader: githubInfoLoader,
-        path: 'github',
-        element: <Github />
+        path: "github",
+        element: <Github />,
       },
-    //   This is dynamic route 
+      //   This is dynamic route
       {
-        path: 'user/:id',
-        element: <User />
-      }
-    ]
-  }
-])
+        path: "user/:id",
+        element: <User />,
+      },
+    ],
+  },
+]);
 ```
 
 #### Now how to use params in the components
@@ -199,7 +199,7 @@ For this we use a `Hook` that is `useParams()`
 import
 
 ```js
-import { useParams } from 'react-router'
+import { useParams } from "react-router";
 ```
 
 using `useParams()` in `User` Component
@@ -209,26 +209,26 @@ using `useParams()` in `User` Component
 Because we use `id` param in url nesting, so we can use it only.
 
 ```jsx
-import React from 'react'
-import { useParams } from 'react-router'
+import React from "react";
+import { useParams } from "react-router";
 
 const User = () => {
-    const {id} = useParams();
+  const { id } = useParams();
 
   return (
-    <div className='bg-gray-600 text-white text-center text-3xl p-2'>
+    <div className="bg-gray-600 text-white text-center text-3xl p-2">
       User : {id}
     </div>
-  )
-}
+  );
+};
 
-export default User
+export default User;
 ```
-
 
 ### How to optimize things where API is needed to call
 
 #### Using `Loader`
+
 ```md
 1. It fetches data before rendering a route.
 2. It makes route-based data fetching declarative.
@@ -236,40 +236,40 @@ export default User
 4. Prevents unnecessary re-renders by loading data before the component mounts.
 ```
 
-So in router , we can use `loader` 
+So in router , we can use `loader`
 
 ```js
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
         path: "",
-        element: <Home />
-      }, 
-      {
-        path: 'about',
-        element: <About />
+        element: <Home />,
       },
       {
-        path: 'contact',
-        element: <Contact />
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
 
-    //   Here we use loader in this child component
+      //   Here we use loader in this child component
       {
         loader: githubInfoLoader,
-        path: 'github',
-        element: <Github />
+        path: "github",
+        element: <Github />,
       },
       {
-        path: 'user/:id',
-        element: <User />
-      }
-    ]
-  }
-])
+        path: "user/:id",
+        element: <User />,
+      },
+    ],
+  },
+]);
 ```
 
 We can direct create function here or we can assign a function to loader and define it somewhere else
@@ -280,16 +280,15 @@ In this we define this `githubInfoLoader()` function inside the `Github.jsx` com
 import React, { useEffect, useState } from "react";
 
 function Github() {
-    
-//   const [data, setData] = useState({});
-//   useEffect(() => {
-//     fetch("https://api.github.com/users/abhishiek2002")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-//         setData(data);
-//       });
-//   }, []);
+  //   const [data, setData] = useState({});
+  //   useEffect(() => {
+  //     fetch("https://api.github.com/users/abhishiek2002")
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         setData(data);
+  //       });
+  //   }, []);
 
   return (
     <div className="text-center bg-gray-600 text-white p-4 text-3xl">
@@ -304,11 +303,10 @@ export default Github;
 // this function use by loader in main.jsx file and loader generally fetch data / call this function on time when we just hover cursor on element where we link this element. Here, we link this element with Header elements "Github" link tag
 
 export const githubInfoLoader = async () => {
-    const response = await fetch('https://api.github.com/users/abhishiek2002')
-    return response.json()
-}
+  const response = await fetch("https://api.github.com/users/abhishiek2002");
+  return response.json();
+};
 ```
-
 
 #### Getting Loader Data In Component
 
@@ -317,7 +315,7 @@ But here problem is that after applying loader in router, how to get loader data
 Right, we use here an another `hook` called `useLoaderData()`
 
 ```js
-import { useloaderData } from 'react-router-dom'
+import { useloaderData } from "react-router-dom";
 ```
 
 Way to use it in component is :-
@@ -327,21 +325,18 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 function Github() {
+  //////////   // Here We use this hook
+  const data = useLoaderData();
 
-
- //////////   // Here We use this hook
-    const data = useLoaderData();
-
-
-//   const [data, setData] = useState({});
-//   useEffect(() => {
-//     fetch("https://api.github.com/users/abhishiek2002")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-//         setData(data);
-//       });
-//   }, []);
+  //   const [data, setData] = useState({});
+  //   useEffect(() => {
+  //     fetch("https://api.github.com/users/abhishiek2002")
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         setData(data);
+  //       });
+  //   }, []);
 
   return (
     <div className="text-center bg-gray-600 text-white p-4 text-3xl">
@@ -356,9 +351,7 @@ export default Github;
 // this function use by loader in main.jsx file and loader generally fetch data / call this function on time when we just hover cursor on element where we link this element. Here, we link this element with Header elements "Github" link tag
 
 export const githubInfoLoader = async () => {
-    const response = await fetch('https://api.github.com/users/abhishiek2002')
-    return response.json()
-}
-
+  const response = await fetch("https://api.github.com/users/abhishiek2002");
+  return response.json();
+};
 ```
-
