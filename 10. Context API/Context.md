@@ -201,7 +201,7 @@ const value = useMemo(() => ({ user, setUser }), [user]);
 ✅ Use Redux or Zustand for complex applications.
 ```
 
-# 🔥 ShortCut File (Standard Practice)
+# 🔥 ShortCut File (`Standard Practice`)
 
 ## Standard practice for creating context 
 
